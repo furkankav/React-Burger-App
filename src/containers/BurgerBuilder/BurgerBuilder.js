@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
-import OrderSummary from '../../components/OrderSummary/OrderSummary'
+import OrderSummary from '../../components/OrderSummary/OrderSummary';
 
 const Fragment = React.Fragment;
 
@@ -31,6 +31,11 @@ class BurgerBuilder extends Component {
     this.setState({
       ordering: state
     })
+  }
+
+  purchaseContinueHandler = () => {
+    alert('You continue!');
+    console.log('yo');
   }
 
   updatePurchaseState(ingredients) {
@@ -72,6 +77,7 @@ class BurgerBuilder extends Component {
       this.updatePurchaseState(updatedIngredients);
     }
   }
+
   render() {
     const disabledInfo = {
       ...this.state.ingredients
@@ -81,8 +87,13 @@ class BurgerBuilder extends Component {
     }
     return (
       <Fragment>
-        <Modal show={this.state.ordering}>
-          <OrderSummary ingredients={this.state.ingredients} />
+        <Modal show={this.state.ordering} clicked={this.orderHandler}>
+          <OrderSummary 
+            ingredients={this.state.ingredients} 
+            cancel={this.orderHandler}
+            continue={this.purchaseContinueHandler}
+            price={this.state.totalPrice}
+            />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls

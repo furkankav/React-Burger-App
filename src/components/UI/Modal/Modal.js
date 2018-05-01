@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import styles from './Modal.css'
-import Backdrop from '../Backdrop/Backdrop'
+import styles from './Modal.css';
+import Backdrop from '../Backdrop/Backdrop';
 
 const Fragment = React.Fragment
 class Modal extends Component {
   shouldComponentUpdate(nextProps, nextState){
-    return nextProps.show !== this.props.show
+    return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
   }
   
   render() {
@@ -23,8 +23,8 @@ class Modal extends Component {
           {this.props.children}
         </div>
       </Fragment>
-    )
+    );
   }
 } 
 
-export default Modal
+export default Modal;

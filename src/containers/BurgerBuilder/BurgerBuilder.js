@@ -50,36 +50,16 @@ class BurgerBuilder extends Component {
   }
 
   purchaseContinueHandler = () => {
-    this.setState({
-      loading: true
-    });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice, // You should normally evaluate price on server side so user can't manipulate
-      customer: {
-        name: 'Max',
-        address: {
-          street: 'Test Street 1',
-          zipcode: '77008',
-          country: 'USA'
-        },
-        email: 'test@gmail.com'
-      },
-      deliveryMethod: 'fastest'
+    const queryParams = [];
+    for(let i in this.state.ingredients){//encodeURIComponent is not necessary here as they are not critical values
+      queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
     }
-    axios.post('/orders.json', order)
-      .then(response => {
-        this.setState({
-          loading: false,
-          ordering: false
-        });
-      })
-      .catch(error => {
-        this.setState({
-          loading: false,
-          ordering: false
-        });
-      });
+    queryParams.push('price=' + this.state.totalPrice);
+    const queryString = queryParams.join('&');
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString
+    });
   }
 
   updatePurchaseState(ingredients) {

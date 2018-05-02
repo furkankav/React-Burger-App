@@ -1,4 +1,7 @@
 import React from 'react';
+//withRouter to get props.match object from router as this component is not 
+//directly called by Route.
+import { withRouter } from 'react-router-dom';
 
 import styles from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
@@ -7,7 +10,7 @@ const burger = (props) => {
   let transformedIngredients = Object.keys(props.ingredients)
     .map(igKey => {
       // Instead of a for loop for each object here we turned each object into array with the length of their object value
-      // then iterate with map function
+      // then iterate with map function here we don't need withRouter it is implemented as a reminder
       return [...Array(props.ingredients[igKey])]
         .map((_, indx) =>
           <BurgerIngredient key={igKey + indx} type={igKey} />
@@ -29,4 +32,4 @@ const burger = (props) => {
   );
 };
 
-export default burger;
+export default withRouter(burger);

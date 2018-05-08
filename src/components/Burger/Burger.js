@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom';
 import styles from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 const burger = (props) => {
-
   let transformedIngredients = Object.keys(props.ingredients)
     .map(igKey => {
       // Instead of a for loop for each object here we turned each object into array with the length of their object value

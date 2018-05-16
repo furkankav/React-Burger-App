@@ -4,7 +4,7 @@ import NavigationItem from './NavigationItem/NavigationItem';
 import styles from './NavigationItems.css';
 
 const navigationItems = (props) => (
-  <ul className={styles.NavigationItems} onClick={() => props.clicked(false)}>
+  <ul className={styles.NavigationItems}>
     <NavigationItem  link="/">Burger Builder</NavigationItem>
     {props.isAuthenticated ?  <NavigationItem link="/orders">Orders</NavigationItem> : null}
     {props.isAuthenticated 

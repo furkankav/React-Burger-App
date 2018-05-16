@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
@@ -19,7 +20,7 @@ const rootReducer = combineReducers ({
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-
+//You can add base path to router <BrowserRouter basepath="...">
 const app = (
   <Provider store={store}>
     <BrowserRouter>

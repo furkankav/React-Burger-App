@@ -13,7 +13,7 @@ import axios from '../../axios-orders';
 
 const Fragment = React.Fragment;
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
   state = {
     ordering: false,
   };
